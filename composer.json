@@ -1,0 +1,32 @@
+{
+  "name": "liyifei/yii2-aliyun-green",
+  "description": "simple way to use aliyun green",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "extension",
+    "aliyun",
+    "green"
+  ],
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "liyifei",
+      "email": "119422342@qq.com"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "*",
+    "liyifei/aliyun-dysms-php-sdk": "~1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "liyifei\\greencontent\\": "src",
+      "liyifei\\greencontent\\requests\\": "src/lib/aliyun-php-sdk-green/requests"
+    }
+  },
+  "config": {
+    "process-timeout": 1800,
+    "secure-http": false
+  }
+}
