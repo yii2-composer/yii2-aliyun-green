@@ -10,4 +10,4 @@ $result = $sdk->textScan([
     ],
 ]);
 
-print_r($result);
+var_dump(\liyifei\greencontent\cores\TextScan::isPassed($result));
