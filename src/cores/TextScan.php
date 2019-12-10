@@ -48,7 +48,7 @@ class TextScan
             }
         }
 
-        return $keywords;
+        return array_unique($keywords);
     }
 
     public static function unpassedLabels($responses)
@@ -65,6 +65,6 @@ class TextScan
             }
         }
 
-        return $labels;
+        return array_unique($labels);
     }
 }
