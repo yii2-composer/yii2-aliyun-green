@@ -30,6 +30,27 @@ class TextScan
         return $data;
     }
 
+    public static function unpassedKeywords($responses)
+    {
+        $keywords = [];
+
+        foreach ($responses as $response) {
+            if ($response->code == 200) {
+                foreach ($response->results as $result) {
+                    if (isset($result->details)) {
+                        foreach ($result->details as $detail) {
+                            if ($detail->contexts) {
+                                $keywords = array_merge($keywords, ArrayHelper::getColumn($detail->contexts, 'context'));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return $keywords;
+    }
+
     public static function unpassedLabels($responses)
     {
         $labels = [];
@@ -37,7 +58,7 @@ class TextScan
         foreach ($responses as $response) {
             if ($response->code == 200) {
                 foreach ($response->results as $result) {
-                    if ($result->details) {
+                    if (isset($result->details)) {
                         $labels = array_merge($labels, ArrayHelper::getColumn($result->details, 'label'));
                     }
                 }
