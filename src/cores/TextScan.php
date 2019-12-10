@@ -4,6 +4,8 @@
 namespace liyifei\greencontent\cores;
 
 
+use yii\helpers\ArrayHelper;
+
 class TextScan
 {
     // 是否通过
@@ -26,5 +28,22 @@ class TextScan
             }
         }
         return $data;
+    }
+
+    public static function unpassedLabels($responses)
+    {
+        $labels = [];
+
+        foreach ($responses as $response) {
+            if ($response->code == 200) {
+                foreach ($response->results as $result) {
+                    if ($result->details) {
+                        $labels = array_merge($labels, ArrayHelper::getColumn($result->details, 'label'));
+                    }
+                }
+            }
+        }
+
+        return $labels;
     }
 }
